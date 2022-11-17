@@ -48,7 +48,8 @@
             text-align: center;
         }
         .screen {
-            height: fit-content;
+            width: 298px;
+            height: 96px;
             padding-bottom: 5px;
             border: none;
         }
@@ -58,7 +59,8 @@
             font-size: 80px;
             letter-spacing: 12px;
             border: solid 8px black;
-            height: fit-content;
+            width: 298px;
+            height: 96px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -74,42 +76,90 @@
         </tr>
         <tr>
             <th class="screen" colspan=4>
-                <div class="screenInside">123456</div>
+                <div id="screen" class="screenInside"></div>
             </th>
         </tr>
         <tr>
-            <th><button>7</button></th>
-            <th><button>8</button></th>
-            <th><button>9</button></th>
-            <th><button>/</button></th>
+            <th><button onclick=button(7)>7</button></th>
+            <th><button onclick=button(8)>8</button></th>
+            <th><button onclick=button(9)>9</button></th>
+            <th><button onclick=button(10)>/</button></th>
         </tr>
         <tr>
-            <th><button>4</button></th>
-            <th><button>5</button></th>
-            <th><button>6</button></th>
-            <th><button>*</button></th>
+            <th><button onclick=button(4)>4</button></th>
+            <th><button onclick=button(5)>5</button></th>
+            <th><button onclick=button(6)>6</button></th>
+            <th><button onclick=button(11)>*</button></th>
         </tr>
         <tr>
-            <th><button onclick=KLIKANIE()>1</button></th>
-            <th><button>2</button></th>
-            <th><button>3</button></th>
-            <th><button>-</button></th>
+            <th><button onclick=button(1)>1</button></th>
+            <th><button onclick=button(2)>2</button></th>
+            <th><button onclick=button(3)>3</button></th>
+            <th><button onclick=button(12)>-</button></th>
         </tr>
         <tr>
-            <th><button style="font-size: 18px;">N-WORD</button></th>
-            <th><button>0</button></th>
-            <th><button>=</button></th>
-            <th><button>+</button></th>            
+            <th><button style="font-size: 18px;" onclick=button(15)>N-WORD</button></th>
+            <th><button onclick=button(0)>0</button></th>
+            <th><button onclick=button(14)>=</button></th>
+            <th><button onclick=button(13)>+</button></th>            
         </tr>
     </table>
  </div>
 </body>
 <script>
     var variable = 0;
-    function KLIKANIE() {
-        variable = variable + 1;
-        console.log("Ile dup? " + variable + "!");
-    }
+    var variableTest = 0;
 
+    function button(buttonID) {
+        if (buttonID <= 9) {
+
+            variable = (variable * 10) + buttonID
+            document.getElementById("screen").innerHTML = variable;
+
+        } else {
+            switch (buttonID) {
+                case 10:
+                    console.log("Divide!");
+                    break;
+                case 11:
+                    console.log("Multiply!");
+                    break;
+                case 12:
+                    console.log("Substract!");
+                    break;
+                case 13:
+                    console.log("Add!");
+                    break;
+                case 14:
+                    console.log("The score is: " + variable);
+                    break;
+                case 15:
+                    console.log("You pressed the n-word!")
+                    variable = 0;
+                    document.getElementById("screen").innerHTML = variable;
+                    break;
+                default:
+                    console.log("Default switch bruh");
+            }
+        }
+    }
+    // function ONE() {
+    //     if (variable <= 999999) {
+    //         variableTest = (variable * 10) + 1;
+    //         variable = variable * 10;
+    //         variable = variable + 1;
+    //         document.getElementById("screen").innerHTML = variable;
+    //         document.getElementById("screen").style.letterSpacing = "12px";
+    //     } else {
+    //         document.getElementById("screen").style.letterSpacing = 0;
+    //         document.getElementById("screen").innerHTML = "Too much!";
+    //         variable = 0;
+    //     }
+    // }
+    // function TWO() {
+    //     variable = variable * 10;
+    //     variable = variable + 2;
+    //     document.getElementById("screen").innerHTML = variable;
+    // }
 </script>
 </html>
