@@ -109,17 +109,39 @@
 <script>
     var variable = 0;
     var variableTest = 0;
-
+    var stored = 0;
+    var outcome = 0;
+    var action = "";
+    
     function button(buttonID) {
         if (buttonID <= 9) {
-
-            variable = (variable * 10) + buttonID
-            document.getElementById("screen").innerHTML = variable;
+            document.getElementById("screen").style.letterSpacing = "12px";
+            if (variable <= 99999999) {
+                variableTest = (variable * 10) + buttonID;
+                if (variableTest <= 99999999) {  
+                    variable = (variable * 10) + buttonID
+                    document.getElementById("screen").innerHTML = variable;
+                } else {
+                    document.getElementById("screen").style.letterSpacing = 0;
+                    document.getElementById("screen").innerHTML = "Too much!";
+                    variable = 0;
+                }
+            } else {
+                document.getElementById("screen").style.letterSpacing = 0;
+                document.getElementById("screen").innerHTML = "Too much!";
+                variable = 0;
+            }
 
         } else {
+            document.getElementById("screen").style.letterSpacing = "12px";
             switch (buttonID) {
                 case 10:
-                    console.log("Divide!");
+                    stored = variable;
+                    variable = 0;
+                    document.getElementById("screen").innerHTML = variable;;
+                    console.log(stored);
+                    action = "divide";
+                    console.log(action)
                     break;
                 case 11:
                     console.log("Multiply!");
