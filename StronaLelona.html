@@ -56,8 +56,8 @@
         .screenInside {
             background: linear-gradient(55deg, rgba(191,255,210,1) 0%, rgba(210,255,205,1) 100%);
             font-family: 'VT323';
-            font-size: 80px;
-            letter-spacing: 12px;
+            font-size: 75px;
+            letter-spacing: 6px;
             border: solid 8px black;
             width: 298px;
             height: 96px;
@@ -115,7 +115,7 @@
     
     function button(buttonID) {
         if (buttonID <= 9) {
-            document.getElementById("screen").style.letterSpacing = "12px";
+            document.getElementById("screen").style.letterSpacing = "6px";
             if (variable <= 99999999) {
                 variableTest = (variable * 10) + buttonID;
                 if (variableTest <= 99999999) {  
@@ -133,31 +133,62 @@
             }
 
         } else {
-            document.getElementById("screen").style.letterSpacing = "12px";
+            document.getElementById("screen").style.letterSpacing = "6px";
             switch (buttonID) {
                 case 10:
                     stored = variable;
                     variable = 0;
-                    document.getElementById("screen").innerHTML = variable;;
+                    document.getElementById("screen").innerHTML = variable;
                     console.log(stored);
                     action = "divide";
-                    console.log(action)
+                    console.log(action);
                     break;
                 case 11:
-                    console.log("Multiply!");
+                    stored = variable;
+                    variable = 0;
+                    document.getElementById("screen").innerHTML = variable;
+                    console.log(stored);
+                    action = "multiply";
+                    console.log(action);
                     break;
                 case 12:
-                    console.log("Substract!");
+                    stored = variable;
+                    variable = 0;
+                    document.getElementById("screen").innerHTML = variable;
+                    console.log(stored);
+                    action = "substract";
+                    console.log(action);
                     break;
                 case 13:
-                    console.log("Add!");
+                    stored = variable;
+                    variable = 0;
+                    document.getElementById("screen").innerHTML = variable;
+                    console.log(stored);
+                    action = "add";
+                    console.log(action);
                     break;
                 case 14:
-                    console.log("The score is: " + variable);
+                    switch (action) {
+                        case "divide":
+                            console.log("dividision");
+                            break;
+                        case "multiply":
+                            console.log("mulitpilos");
+                            break;
+                        case "substract":
+                            console.log("substrictiton");
+                            break;
+                        case "add":
+                            console.log("addidation");
+                            break;
+                        default:
+                            console.log("lmao default");
+                    }
                     break;
                 case 15:
                     console.log("You pressed the n-word!")
                     variable = 0;
+                    action = "";
                     document.getElementById("screen").innerHTML = variable;
                     break;
                 default:
