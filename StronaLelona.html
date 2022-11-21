@@ -114,11 +114,11 @@
     var action = "";
     
     function button(buttonID) {
-        if (buttonID <= 9) {
-            document.getElementById("screen").style.letterSpacing = "6px";
-            if (variable <= 99999999) {
-                variableTest = (variable * 10) + buttonID;
-                if (variableTest <= 99999999) {  
+        document.getElementById("screen").style.textDecoration = "none";
+        document.getElementById("screen").style.letterSpacing = "6px";
+        if (buttonID <= 9) { //Check what type of button was pressed (Number or action)
+            variableTest = (variable * 10) + buttonID; //Simulates what happpens when number button gets pressed
+                if (variableTest <= 99999999) { //Checks if simulation went over the 8-digits threshold
                     variable = (variable * 10) + buttonID
                     document.getElementById("screen").innerHTML = variable;
                 } else {
@@ -126,47 +126,54 @@
                     document.getElementById("screen").innerHTML = "Too much!";
                     variable = 0;
                 }
-            } else {
-                document.getElementById("screen").style.letterSpacing = 0;
-                document.getElementById("screen").innerHTML = "Too much!";
-                variable = 0;
-            }
-
         } else {
-            document.getElementById("screen").style.letterSpacing = "6px";
             switch (buttonID) {
-                case 10:
+                case 10: //Action on / button
                     stored = variable;
                     variable = 0;
                     document.getElementById("screen").innerHTML = variable;
                     action = "divide";
                     console.log(stored + " " + action);
                     break;
-                case 11:
+                case 11: //Action on * button
                     stored = variable;
                     variable = 0;
                     document.getElementById("screen").innerHTML = variable;
                     action = "multiply";
                     console.log(stored + " " + action);
                     break;
-                case 12:
+                case 12: //Action on - button
                     stored = variable;
                     variable = 0;
                     document.getElementById("screen").innerHTML = variable;
                     action = "substract";
                     console.log(stored + " " + action);
                     break;
-                case 13:
+                case 13: //Action on + button
                     stored = variable;
                     variable = 0;
                     document.getElementById("screen").innerHTML = variable;
                     action = "add";
                     console.log(stored + " " + action);
                     break;
-                case 14:
-                    switch (action) {
+                case 14: //Action on = button
+                    switch (action) { //Checks what was the recent action-button pressed
                         case "divide":
-                            console.log("dividision");
+                            if (variable != 0) { //Checks if you tried to divide by 0 you dummie
+                                variableTest = stored / variable
+                                if (variableTest >= 1) { //Checks if simulation ends up in decimals (gotta make decimals work yet)
+                                outcome = stored / variable;
+                                document.getElementById("screen").innerHTML = outcome;
+                                document.getElementById("screen").style.textDecoration = "underline";
+                                stored = outcome;
+                                } else {
+                                document.getElementById("screen").innerHTML = "Decimals";
+                                document.getElementById("screen").style.textDecoration = "underline";
+                                }
+                            } else {
+                                document.getElementById("screen").style.letterSpacing = 0;
+                                document.getElementById("screen").innerHTML = "Error!"; //Forces "Error!" text instead of default "Infinity"
+                            }
                             break;
                         case "multiply":
                             console.log("mulitpilos");
