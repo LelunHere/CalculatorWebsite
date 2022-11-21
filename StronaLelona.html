@@ -107,18 +107,21 @@
  </div>
 </body>
 <script>
-    var variable = 0;
+    var variable = null;
     var variableTest = 0;
     var stored = 0;
     var outcome = 0;
     var action = "";
-    
+    var wasOutcomePressed = false;
+
     function button(buttonID) {
         document.getElementById("screen").style.textDecoration = "none";
         document.getElementById("screen").style.letterSpacing = "6px";
-        if (buttonID <= 9) { //Check what type of button was pressed (Number or action)
+        document.getElementById("screen").style.fontFamily = "VT323";
+        if (buttonID <= 9) { //Checks what type of button was pressed (Number or action)
             variableTest = (variable * 10) + buttonID; //Simulates what happpens when number button gets pressed
                 if (variableTest <= 99999999) { //Checks if simulation went over the 8-digits threshold
+                    
                     variable = (variable * 10) + buttonID
                     document.getElementById("screen").innerHTML = variable;
                 } else {
@@ -131,28 +134,24 @@
                 case 10: //Action on / button
                     stored = variable;
                     variable = 0;
-                    document.getElementById("screen").innerHTML = variable;
                     action = "divide";
                     console.log(stored + " " + action);
                     break;
                 case 11: //Action on * button
                     stored = variable;
                     variable = 0;
-                    document.getElementById("screen").innerHTML = variable;
                     action = "multiply";
                     console.log(stored + " " + action);
                     break;
                 case 12: //Action on - button
                     stored = variable;
                     variable = 0;
-                    document.getElementById("screen").innerHTML = variable;
                     action = "substract";
                     console.log(stored + " " + action);
                     break;
                 case 13: //Action on + button
                     stored = variable;
                     variable = 0;
-                    document.getElementById("screen").innerHTML = variable;
                     action = "add";
                     console.log(stored + " " + action);
                     break;
@@ -169,24 +168,60 @@
                                 } else {
                                 document.getElementById("screen").innerHTML = "Decimals";
                                 document.getElementById("screen").style.textDecoration = "underline";
-                                }
+                                } 
                             } else {
-                                document.getElementById("screen").style.letterSpacing = 0;
+                                document.getElementById("screen").style.letterSpacing = "2px";
                                 document.getElementById("screen").innerHTML = "Error!"; //Forces "Error!" text instead of default "Infinity"
-                            }
+                            } 
                             break;
                         case "multiply":
+
                             console.log("mulitpilos");
                             break;
                         case "substract":
-                            console.log("substrictiton");
+                            variableTest = stored - variable
+                            if (variableTest >= -9999999) {
+                                outcome = stored - variable;
+                                document.getElementById("screen").innerHTML = outcome;
+                                document.getElementById("screen").style.textDecoration = "underline";
+                                stored = outcome;
+                            } else if (variableTest >= -99999999) {
+                                outcome = stored - variable;
+                                document.getElementById("screen").innerHTML = outcome;
+                                document.getElementById("screen").style.letterSpacing = 0;
+                                document.getElementById("screen").style.textDecoration = "underline";
+                                stored = outcome;
+                            } else {
+                                document.getElementById("screen").innerHTML = "Too less!";
+                                document.getElementById("screen").style.letterSpacing = 0;
+                            }
                             break;
                         case "add":
-                            console.log("addidation");
+                            variableTest = stored + variable
+                            if (variableTest <= 99999999) {
+                                outcome = stored + variable;
+                                document.getElementById("screen").innerHTML = outcome;
+                                document.getElementById("screen").style.textDecoration = "underline";
+                                stored = outcome;
+                            } else {
+                                document.getElementById("screen").style.letterSpacing = 0;
+                                document.getElementById("screen").innerHTML = "Too much!";
+                                variable = 0;
+                            }
                             break;
                         default:
-                            console.log("lmao default");
+                            if (variable != null ) {
+                                outcome = variable;
+                                variable = null;
+                                document.getElementById("screen").innerHTML = outcome;
+                                document.getElementById("screen").style.textDecoration = "underline";
+                            } else { //You deserve it
+                                document.getElementById("screen").innerHTML = "( ͠° ͟ʖ ͡°)";
+                                document.getElementById("screen").style.fontFamily = "Arial";
+                                document.getElementById("screen").style.letterSpacing = 0;
+                            }
                     }
+                    wasOutcomePressed = true;
                     break;
                 case 15:
                     console.log("You pressed the n-word!")
@@ -202,9 +237,11 @@
     }
     /* What i still need to add:
     - decimals [maybe]
+    - sounds 
     - multiply, minus, addition buttons
     - reseting variable after looping (9 / 3 = 3 (=) / 3 = 1)
     - last button pressed distinction [maybe]
-    - more digits (chaning font size depending on the amount of digits) [maybe] */
+    - more digits (chaning font size depending on the amount of digits) [maybe] 
+    - small icon of the acitve action */ 
 </script>
 </html>
